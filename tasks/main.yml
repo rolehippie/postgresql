@@ -1,0 +1,164 @@
+# Standards: 0.1
+---
+- name: Install required packages
+  loop: "{{ postgresql_packages }}"
+  package:
+    name: "{{ item }}"
+    state: present
+  tags:
+    - postgresql
+
+- name: Fix data permissions
+  file:
+    path: /var/lib/postgresql
+    owner: postgres
+    group: postgres
+    recurse: True
+  tags:
+    - postgresql
+
+- name: Write environment config
+  notify:
+    - Restart postgresql
+  template:
+    src: environment.j2
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/environment"
+  tags:
+    - postgresql
+
+- name: Write ctl config
+  notify:
+    - Restart postgresql
+  template:
+    src: ctl.j2
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/pg_ctl.conf"
+  tags:
+    - postgresql
+
+- name: Write hba config
+  notify:
+    - Restart postgresql
+  template:
+    src: hba.j2
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf"
+  tags:
+    - postgresql
+
+- name: Write ident config
+  notify:
+    - Restart postgresql
+  template:
+    src: ident.j2
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/pg_ident.conf"
+  tags:
+    - postgresql
+
+- name: Write start config
+  notify:
+    - Restart postgresql
+  template:
+    src: start.j2
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/start.conf"
+  tags:
+    - postgresql
+
+- name: Write postgresql config
+  notify:
+    - Restart postgresql
+  template:
+    src: config.j2
+    dest: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
+  tags:
+    - postgresql
+
+- name: Start postgresql service
+  systemd:
+    name: postgresql
+    state: started
+    daemon_reload: True
+    masked: False
+    enabled: True
+  tags:
+    - postgresql
+
+- name: Update root account
+  become: True
+  become_user: postgres
+  postgresql_user:
+    name: "{{ postgresql_root_username }}"
+    password: "{{ postgresql_root_password }}"
+    role_attr_flags: SUPERUSER,CREATEROLE,CREATEDB,REPLICATION,BYPASSRLS
+    state: present
+  tags:
+    - postgresql
+
+- name: Create defined databases
+  become: True
+  become_user: postgres
+  loop: "{{ postgresql_global_databases + postgresql_extra_databases }}"
+  loop_control:
+    label: "{{ item.name }}"
+  postgresql_db:
+    name: "{{ item.name }}"
+    encoding: "{{ item.encoding | default(omit) }}"
+    lc_collate: "{{ item.encoding | default(omit) }}"
+    lc_ctype: "{{ item.encoding | default(omit) }}"
+    template: "{{ item.encoding | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  tags:
+    - postgresql
+
+- name: Create defined users
+  become: True
+  become_user: postgres
+  loop: "{{ postgresql_global_users + postgresql_extra_users }}"
+  loop_control:
+    label: "{{ item.name }}"
+  postgresql_user:
+    name: "{{ item.name }}"
+    password: "{{ item.password | default(omit) }}"
+    db: "{{ item.db | default(omit) }}"
+    groups: "{{ item.groups | default(omit) }}"
+    priv: "{{ item.priv | default(omit) }}"
+    role_attr_flags: "{{ item.role_attr_flags | default(omit) }}"
+    encrypted: "{{ item.encrypted | default(True) }}"
+    state: "{{ item.state | default('present') }}"
+  tags:
+    - postgresql
+
+- name: Write backup script
+  when: postgresql_backup_enabled
+  template:
+    src: backup.j2
+    dest: /usr/local/bin/postgresql-backup
+    owner: root
+    group: root
+    mode: u=rwx,g=rwx,o=
+  tags:
+    - postgresql
+
+- name: Remove backup script
+  when: not postgresql_backup_enabled
+  file:
+    path: /usr/local/bin/postgresql-backup
+    state: absent
+  tags:
+    - postgresql
+
+- name: Create backup cronjobs
+  cron:
+    name: postgresql backup
+    special_time: "{{ postgresql_backup_cron }}"
+    job: /usr/bin/cronic /usr/local/bin/postgresql-backup
+    state: "{{ 'present' if postgresql_backup_enabled else 'absent' }}"
+  tags:
+    - postgresql
+
+- name: Include exporter tasks
+  when: postgresql_exporter_enabled | default(False)
+  include: exporter.yml
+  tags:
+    - postgresql
+    - postgresql-exporter
+
+...

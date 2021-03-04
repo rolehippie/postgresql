@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus exporter for PostgreSQL
+After=network-online.target
+
+[Service]
+Restart=always
+EnvironmentFile=/etc/default/postgresql-exporter
+ExecStart=/usr/bin/postgresql-exporter $ARGS
+
+[Install]
+WantedBy=multi-user.target

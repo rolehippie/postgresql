@@ -1,0 +1,3 @@
+{% for item in postgresql_default_hba + postgresql_global_hba + postgresql_extra_hba %}
+{{ item.type }} {{ item.database }} {{ item.user }} {{ item.address | default('') }} {{ item.method }}
+{% endfor %}

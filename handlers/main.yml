@@ -1,0 +1,15 @@
+# Standards: 0.1
+---
+- name: Restart postgresql
+  systemd:
+    name: postgresql
+    state: restarted
+    daemon_reload: True
+
+- name: Restart postgresql-exporter
+  systemd:
+    name: postgresql-exporter
+    state: restarted
+    daemon_reload: yes
+
+...

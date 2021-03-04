@@ -1,0 +1,3 @@
+{% for item in postgresql_global_ident + postgresql_extra_ident %}
+{{ item.map }} {{ item.system }} {{ item.postgres }}
+{% endfor %}

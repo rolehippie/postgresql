@@ -1,0 +1,41 @@
+[Unit]
+Description=MariaDB
+
+Wants=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=10s
+EnvironmentFile=/etc/environment
+
+ExecStop=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker stop %p || true'
+ExecStartPre=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker kill %p || true'
+ExecStartPre=/bin/sh -c '/usr/bin/docker ps -a | /bin/grep %p 1> /dev/null && /usr/bin/docker rm %p || true'
+ExecStartPre=/usr/bin/docker pull {{ mariadb_image }}
+ExecStart=/usr/bin/docker run --rm \
+  --name %p \
+  --hostname %p \
+  --label traefik.enable=false \
+  --env-file /etc/default/mariadb \
+{% if mariadb_network | default(False) %}
+  --network {{ mariadb_network }} \
+{% endif %}
+  --volume /etc/ssl:/etc/ssl:ro \
+{% if mariadb_volume_server | default(False) %}
+  --volume {{ mariadb_volume_server }}:/var/lib/mysql \
+{% endif %}
+{% if mariadb_volume_backup | default(False) %}
+  --volume {{ mariadb_volume_backup }}:/var/lib/backup \
+{% endif %}
+{% if mariadb_publish_server | default(False) %}
+  --publish {{ mariadb_publish_server }}:3306 \
+{% endif %}
+  --health-cmd /usr/bin/healthcheck \
+  --health-interval 10s \
+  --health-retries 20 \
+  --health-timeout 10s \
+  {{ mariadb_image }}
+
+[Install]
+WantedBy=multi-user.target

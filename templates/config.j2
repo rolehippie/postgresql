@@ -1,0 +1,52 @@
+data_directory = '/var/lib/postgresql/{{ postgresql_version }}/main'
+hba_file = '/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf'
+ident_file = '/etc/postgresql/{{ postgresql_version }}/main/pg_ident.conf'
+
+external_pid_file = '/var/run/postgresql/{{ postgresql_version }}-main.pid'
+
+listen_addresses = '{{ postgresql_listen_address }}'
+port = {{ postgresql_port }}
+
+max_connections = {{ postgresql_max_connections }}
+superuser_reserved_connections = {{ postgresql_superuser_reserved_connections }}
+
+unix_socket_directories = '/var/run/postgresql'
+
+ssl = {{ 'on' if postgresql_ssl_enabled else 'off' }}
+{% if postgresql_ssl_ca_file | default(False) %}
+ssl_ca_file = '{{ postgresql_ssl_ca_file }}'
+{% endif %}
+{% if postgresql_ssl_crl_file | default(False) %}
+ssl_crl_file = '{{ postgresql_ssl_crl_file }}'
+{% endif %}
+{% if postgresql_ssl_cert_file | default(False) %}
+ssl_cert_file = '{{ postgresql_ssl_cert_file }}'
+{% endif %}
+{% if postgresql_ssl_key_file | default(False) %}
+ssl_key_file = '{{ postgresql_ssl_key_file }}'
+{% endif %}
+{% if postgresql_ssl_dh_params_file | default(False) %}
+ssl_dh_params_file = '{{ postgresql_ssl_dh_params_file }}'
+{% endif %}
+
+shared_buffers = 128MB
+dynamic_shared_memory_type = posix
+
+max_wal_size = 1GB
+min_wal_size = 80MB
+
+log_line_prefix = '%m [%p] %q%u@%d '
+log_timezone = 'Etc/UTC'
+
+cluster_name = '{{ postgresql_version }}/main'
+
+datestyle = 'iso, mdy'
+timezone = 'Etc/UTC'
+
+lc_messages = 'en_US.UTF-8'
+lc_monetary = 'en_US.UTF-8'
+lc_numeric = 'en_US.UTF-8'
+lc_time = 'en_US.UTF-8'
+default_text_search_config = 'pg_catalog.english'
+
+include_dir = 'conf.d'

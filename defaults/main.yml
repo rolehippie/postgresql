@@ -1,0 +1,250 @@
+# Standards: 0.1
+---
+postgresql_version: 12
+
+# @var postgresql_packages:description: List of packages to install
+postgresql_packages:
+  - "postgresql-{{ postgresql_version }}"
+  - "postgresql-client-{{ postgresql_version }}"
+  - python3-psycopg2
+
+# @var postgresql_listen_address:description: Address to listen to
+postgresql_listen_address: 0.0.0.0
+
+# @var postgresql_port:description: Port to listen to
+postgresql_port: 5432
+
+# @var postgresql_max_connections:description: Maximum of allowed connections
+postgresql_max_connections: 1000
+
+# @var postgresql_superuser_reserved_connections:description: Reserved connections for superuser
+postgresql_superuser_reserved_connections: 3
+
+# @var postgresql_ssl_enabled:description: Enable SSL encryption
+postgresql_ssl_enabled: True
+
+# @var postgresql_ctl_options:description: Path to CA file for SSL
+postgresql_ssl_ca_file:
+
+# @var postgresql_ctl_options:description: Path to CRL file for SSL
+postgresql_ssl_crl_file:
+
+# @var postgresql_ctl_options:description: Path to cert for SSL
+postgresql_ssl_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
+
+# @var postgresql_ctl_options:description: Path to key for SSL
+postgresql_ssl_key_file: /etc/ssl/private/ssl-cert-snakeoil.key
+
+# @var postgresql_ctl_options:description: Path to dhparam file for SSL
+postgresql_ssl_dh_params_file:
+
+# @var postgresql_ctl_options:description: Options for PostgeSQL ctl
+postgresql_ctl_options:
+
+# @var postgresql_root_username:description: Username for the root user
+postgresql_root_username: postgres
+
+# @var postgresql_root_password:description: Password for the root user
+postgresql_root_password:
+
+# @var postgresql_default_hba:description: List of default hba
+# @var postgresql_default_hba:example: >
+# postgresql_default_hba:
+#   - type: local
+#     database: example
+#     user: postgresuser1
+#     address: 127.0.0.1/32
+#     method: md5
+# @end
+postgresql_default_hba:
+  - type: local
+    database: all
+    user: postgres
+    method: peer
+  - type: local
+    database: all
+    user: all
+    method: peer
+  - type: host
+    database: all
+    user: all
+    address: 127.0.0.1/32
+    method: md5
+  - type: host
+    database: all
+    user: all
+    address: ::1/128
+    method: md5
+  - type: local
+    database: replication
+    user: all
+    method: peer
+  - type: host
+    database: replication
+    user: all
+    address: 127.0.0.1/32
+    method: md5
+  - type: host
+    database: replication
+    user: all
+    address: ::1/128
+    method: md5
+
+# @var postgresql_global_hba:description: List of global hba
+# @var postgresql_global_hba:example: >
+# postgresql_global_hba:
+#   - type: local
+#     database: example
+#     user: postgresuser1
+#     address: 127.0.0.1/32
+#     method: md5
+# @end
+postgresql_global_hba: []
+
+# @var postgresql_extra_hba:description: List of extra hba
+# @var postgresql_extra_hba:example: >
+# postgresql_extra_hba:
+#   - type: local
+#     database: example
+#     user: postgresuser1
+#     address: 127.0.0.1/32
+#     method: md5
+# @end
+postgresql_extra_hba: []
+
+# @var postgresql_global_ident:description: List of global identities
+# @var postgresql_global_ident:example: >
+# postgresql_global_ident:
+#   - map: example1
+#     system: systemuser1
+#     postgres: postgresuser1
+#   - map: example2
+#     system: systemuser2
+#     postgres: postgresuser2
+# @end
+postgresql_global_ident: []
+
+# @var postgresql_extra_ident:description: List of extra identities
+# @var postgresql_extra_ident:example: >
+# postgresql_extra_ident:
+#   - map: example1
+#     system: systemuser1
+#     postgres: postgresuser1
+#   - map: example2
+#     system: systemuser2
+#     postgres: postgresuser2
+# @end
+postgresql_extra_ident: []
+
+# @var postgresql_global_databases:description: List of databases to create
+# @var postgresql_global_databases:example: >
+# postgresql_global_databases:
+#   - name: example
+#     encoding: UTF-8
+#     lc_collate: de_DE.UTF-8
+#     lc_ctype: de_DE.UTF-8
+#     template: template0
+#     state: present
+#   - name: foobar
+#     state: absent
+# @end
+postgresql_global_databases: []
+
+# @var postgresql_extra_databases:description: List of additional databases to create
+# @var postgresql_extra_databases:example: >
+# postgresql_extra_databases:
+#   - name: example
+#     encoding: UTF-8
+#     lc_collate: de_DE.UTF-8
+#     lc_ctype: de_DE.UTF-8
+#     template: template0
+#     state: present
+#   - name: foobar
+#     state: absent
+# @end
+postgresql_extra_databases: []
+
+# @var postgresql_global_users:description: List of users to create
+# @var postgresql_global_users:example: >
+# postgresql_global_users:
+#   - name: example
+#     password: p433w0rd
+#     db: test
+#     groups:
+#       - group1
+#       - group2
+#     priv: ALL/example:ALL
+#     role_attr_flags: CREATEDB,CREATEROLE,SUPERUSER
+#     state: present
+#   - name: foobar
+#     state: absent
+# @end
+postgresql_global_users: []
+
+# @var postgresql_extra_users:description: List of additional users to create
+# @var postgresql_extra_users:example: >
+# postgresql_extra_users:
+#   - name: example
+#     password: p433w0rd
+#     db: test
+#     groups:
+#       - group1
+#       - group2
+#     priv: ALL/example:ALL
+#     role_attr_flags: CREATEDB,CREATEROLE,SUPERUSER
+#     state: present
+#   - name: foobar
+#     state: absent
+# @end
+postgresql_extra_users: []
+
+# @var postgresql_global_environment:description: Dict of global environment variables
+# @var postgresql_global_environment:example: >
+# postgresql_global_environment:
+#   FOO: bar
+#   EXAMPLE: works
+# @end
+postgresql_global_environment: {}
+
+# @var postgresql_extra_environment:description: Dict of extra environment variables
+# @var postgresql_extra_environment:example: >
+# postgresql_extra_environment:
+#   FOO: bar
+#   EXAMPLE: works
+# @end
+postgresql_extra_environment: {}
+
+# @var postgresql_backup_enabled:description: Enable or disable the backup script
+postgresql_backup_enabled: False
+
+# @var postgresql_backup_path:description: Path to store the backups
+postgresql_backup_path: /var/lib/postgresql/backup
+
+# @var postgresql_backup_retention:description: Retention period to keep backups
+postgresql_backup_retention: +7
+
+# @var postgresql_backup_addition_script:description: Additional commands at the end of the script
+postgresql_backup_addition_script:
+
+# @var postgresql_backup_cron:description: A simple cron timing definition like hourly, daily or weekly
+postgresql_backup_cron: daily
+
+# @var postgresql_backup_ignore:description: Ignoring this filter via grep on database selection
+postgresql_backup_ignore: (postgres|template0|template1)
+
+# @var postgresql_backup_formatting:description: Date format for the backup folder name
+postgresql_backup_formatting: "%F"
+
+# @var postgresql_exporter_enabled:description: Enable the installation of the apache exporter
+postgresql_exporter_enabled: True
+
+# @var postgresql_exporter_version:description: Version of the apache exporter to install
+postgresql_exporter_version: 0.8.0
+
+# @var postgresql_exporter_download:description: URL to the apache exporter to install
+postgresql_exporter_download: "https://github.com/wrouesnel/postgres_exporter/releases/download/v{{ postgresql_exporter_version }}/postgres_exporter_v{{ postgresql_exporter_version }}_linux-amd64.tar.gz"
+
+# @var postgresql_exporter_args:description: Optional list of additional arguments for the postgresql exporter
+postgresql_exporter_args: []
+
+...

@@ -1,0 +1,86 @@
+# Standards: 1.2
+---
+- name: Check existing install
+  register: postgresql_exporter_version_check
+  failed_when: False
+  changed_when: False
+  check_mode: False
+  command: /usr/bin/postgresql-exporter --version
+  tags:
+    - postgresql
+    - postgresql-exporter
+
+- name: Fact version change
+  set_fact:
+    postgresql_exporter_version_changed: "{{ postgresql_exporter_version_check.rc != 0 or (postgresql_exporter_version_check.stderr_lines is defined and postgresql_exporter_version not in postgresql_exporter_version_check.stderr_lines[0]) | bool }}"
+  tags:
+    - postgresql
+    - postgresql-exporter
+
+- name: Download release tarball
+  when: postgresql_exporter_version_changed
+  unarchive:
+    src: "{{ postgresql_exporter_download }}"
+    dest: /usr/local/src
+    remote_src: True
+    owner: root
+    group: root
+  tags:
+    - postgresql
+    - postgresql-exporter
+
+- name: Copy exporter binary
+  when: postgresql_exporter_version_changed and not ansible_check_mode
+  notify:
+    - Restart postgresql-exporter
+  copy:
+    src: "/usr/local/src/postgres_exporter_v{{ postgresql_exporter_version }}_linux-amd64/postgres_exporter"
+    dest: /usr/bin/postgresql-exporter
+    remote_src: True
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  tags:
+    - postgresql
+    - postgresql-exporter
+
+- name: Write default config
+  notify:
+    - Restart postgresql-exporter
+  template:
+    src: exporter/default.j2
+    dest: /etc/default/postgresql-exporter
+  tags:
+    - postgresql
+    - postgresql-exporter
+
+- name: Write service file
+  notify:
+    - Restart postgresql-exporter
+  template:
+    src: exporter/service.j2
+    dest: /etc/systemd/system/postgresql-exporter.service
+  tags:
+    - postgresql
+    - postgresql-exporter
+
+- name: Start postgresql-exporter service
+  systemd:
+    name: postgresql-exporter
+    state: started
+    daemon_reload: True
+    masked: False
+    enabled: True
+  tags:
+    - postgresql
+    - postgresql-exporter
+
+- name: Remove install directory
+  file:
+    path: "/usr/local/src/postgres_exporter_v{{ postgresql_exporter_version }}_linux-amd64"
+    state: absent
+  tags:
+    - postgresql
+    - postgresql-exporter
+
+...

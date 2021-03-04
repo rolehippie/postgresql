@@ -1,0 +1,3 @@
+{% for key, val in (postgresql_global_environment | combine(postgresql_extra_environment)).items() %}
+{{ key }} = '{{ val }}'
+{% endfor %}
