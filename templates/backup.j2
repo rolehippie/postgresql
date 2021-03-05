@@ -17,7 +17,7 @@ find ${PARENT_DIRECORY} \
     -ctime ${BACKUP_RETENTION} \
     -exec rm -rf {} \;
 
-DATABASES=$(su -c "psql -w -A -t -c 'SELECT datname FROM pg_database'" postgres | grep -v -E "{{ postgresql_backup_ignore }}")
+DATABASES=$(cd /tmp && su -c "psql -w -A -t -c 'SELECT datname FROM pg_database'" postgres | grep -v -E "{{ postgresql_backup_ignore }}")
 
 if [ "${DATABASES}" == "" ]; then
     echo "Found no databases..."
@@ -26,7 +26,7 @@ fi
 
 echo "Starting backup for postgres..."
 START=$(date +%s)
-su -c "pg_dump -w --dbname=postgres" postgres | gzip > "${BACKUP_DIRECTORY}/postgres.sql.gz
+cd /tmp && su -c "pg_dump -w --dbname=postgres" postgres | gzip > "${BACKUP_DIRECTORY}/postgres.sql.gz"
 ENDS=$(date +%s)
 echo "Done within $((${ENDS}-${START}))s"
 
@@ -34,7 +34,7 @@ for DATABASE in ${DATABASES}
 do
     echo "Starting backup for ${DATABASE}..."
     START=$(date +%s)
-    su -c "pg_dump -w --dbname=${DATABASE}" postgres | gzip > "${BACKUP_DIRECTORY}/${DATABASE}.sql.gz"
+    cd /tmp && su -c "pg_dump -w --dbname=${DATABASE}" postgres | gzip > "${BACKUP_DIRECTORY}/${DATABASE}.sql.gz"
     ENDS=$(date +%s)
     echo "Done within $((${ENDS}-${START}))s"
 done
