@@ -5,14 +5,14 @@
   failed_when: False
   changed_when: False
   check_mode: False
-  command: /usr/bin/postgresql-exporter --version
+  shell: /usr/bin/postgresql-exporter --version 2>&1
   tags:
     - postgresql
     - postgresql-exporter
 
 - name: Fact version change
   set_fact:
-    postgresql_exporter_version_changed: "{{ postgresql_exporter_version_check.rc != 0 or (postgresql_exporter_version_check.stderr_lines is defined and postgresql_exporter_version not in postgresql_exporter_version_check.stderr_lines[0]) | bool }}"
+    postgresql_exporter_version_changed: "{{ postgresql_exporter_version_check.rc != 0 or (postgresql_exporter_version_check.stdout_lines is defined and postgresql_exporter_version not in postgresql_exporter_version_check.stdout_lines[0]) | bool }}"
   tags:
     - postgresql
     - postgresql-exporter
