@@ -239,10 +239,11 @@ postgresql_backup_formatting: "%F"
 postgresql_exporter_enabled: True
 
 # @var postgresql_exporter_version:description: Version of the apache exporter to install
-postgresql_exporter_version: 0.8.0
+# renovate: datasource=github-releases depName=prometheus-community/postgres_exporter
+postgresql_exporter_version: 0.9.0
 
 # @var postgresql_exporter_download:description: URL to the apache exporter to install
-postgresql_exporter_download: "https://github.com/wrouesnel/postgres_exporter/releases/download/v{{ postgresql_exporter_version }}/postgres_exporter_v{{ postgresql_exporter_version }}_linux-amd64.tar.gz"
+postgresql_exporter_download: "https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgresql_exporter_version }}/postgres_exporter-{{ postgresql_exporter_version }}.linux-amd64.tar.gz"
 
 # @var postgresql_exporter_args:description: Optional list of additional arguments for the postgresql exporter
 postgresql_exporter_args: []
