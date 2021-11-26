@@ -208,9 +208,9 @@ URL to the apache exporter to install
 #### Default value
 
 ```YAML
-postgresql_exporter_download: https://github.com/wrouesnel/postgres_exporter/releases/download/v{{
-  postgresql_exporter_version }}/postgres_exporter_v{{ postgresql_exporter_version
-  }}_linux-amd64.tar.gz
+postgresql_exporter_download: https://github.com/prometheus-community/postgres_exporter/releases/download/v{{
+  postgresql_exporter_version }}/postgres_exporter-{{ postgresql_exporter_version
+  }}.linux-amd64.tar.gz
 ```
 
 ### postgresql_exporter_enabled
@@ -230,7 +230,7 @@ Version of the apache exporter to install
 #### Default value
 
 ```YAML
-postgresql_exporter_version: 0.8.0
+postgresql_exporter_version: 0.9.0
 ```
 
 ### postgresql_extra_databases
