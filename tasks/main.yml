@@ -14,6 +14,7 @@
     owner: postgres
     group: postgres
     recurse: True
+    mode: u=rwx,g=rx,o=rx
   tags:
     - postgresql
 
@@ -23,6 +24,9 @@
   template:
     src: environment.j2
     dest: "/etc/postgresql/{{ postgresql_version }}/main/environment"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - postgresql
 
@@ -32,6 +36,9 @@
   template:
     src: ctl.j2
     dest: "/etc/postgresql/{{ postgresql_version }}/main/pg_ctl.conf"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - postgresql
 
@@ -41,6 +48,9 @@
   template:
     src: hba.j2
     dest: "/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - postgresql
 
@@ -50,6 +60,9 @@
   template:
     src: ident.j2
     dest: "/etc/postgresql/{{ postgresql_version }}/main/pg_ident.conf"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - postgresql
 
@@ -59,6 +72,9 @@
   template:
     src: start.j2
     dest: "/etc/postgresql/{{ postgresql_version }}/main/start.conf"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - postgresql
 
@@ -68,6 +84,9 @@
   template:
     src: config.j2
     dest: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - postgresql
 

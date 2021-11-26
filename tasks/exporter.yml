@@ -25,6 +25,7 @@
     remote_src: True
     owner: root
     group: root
+    mode: u=rw,g=r,o=r
   tags:
     - postgresql
     - postgresql-exporter
@@ -50,6 +51,9 @@
   template:
     src: exporter/default.j2
     dest: /etc/default/postgresql-exporter
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - postgresql
     - postgresql-exporter
@@ -60,6 +64,9 @@
   template:
     src: exporter/service.j2
     dest: /etc/systemd/system/postgresql-exporter.service
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - postgresql
     - postgresql-exporter
