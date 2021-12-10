@@ -14,7 +14,7 @@
     owner: postgres
     group: postgres
     recurse: True
-    mode: u=rwx,g=rx,o=rx
+    mode: u=rwx,g=,o=
   tags:
     - postgresql
 
