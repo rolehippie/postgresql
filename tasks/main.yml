@@ -175,7 +175,7 @@
 
 - name: Include exporter tasks
   when: postgresql_exporter_enabled | default(False)
-  include: exporter.yml
+  include_tasks: exporter.yml
   tags:
     - postgresql
     - postgresql-exporter
