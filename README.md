@@ -1,58 +1,59 @@
 # postgresql
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/postgresql) [![Testing Build](https://github.com/rolehippie/postgresql/workflows/testing/badge.svg)](https://github.com/rolehippie/postgresql/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/postgresql/workflows/readme/badge.svg)](https://github.com/rolehippie/postgresql/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/postgresql/workflows/galaxy/badge.svg)](https://github.com/rolehippie/postgresql/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/postgresql)](https://github.com/rolehippie/postgresql/blob/master/LICENSE) 
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/postgresql) [![Testing Build](https://github.com/rolehippie/postgresql/workflows/testing/badge.svg)](https://github.com/rolehippie/postgresql/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/postgresql/workflows/readme/badge.svg)](https://github.com/rolehippie/postgresql/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/postgresql/workflows/galaxy/badge.svg)](https://github.com/rolehippie/postgresql/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/postgresql)](https://github.com/rolehippie/postgresql/blob/master/LICENSE)
 
-Ansible role to install and configure a postgresql full-text search engine. 
+Ansible role to install and configure a postgresql full-text search engine.
 
-## Sponsor 
+## Sponsor
 
-[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu) 
+[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu)
 
 Building and improving this Ansible role have been sponsored by my employer **Proact Deutschland GmbH**.
 
 ## Table of content
 
-* [Default Variables](#default-variables)
-  * [postgresql_backup_addition_script](#postgresql_backup_addition_script)
-  * [postgresql_backup_cron](#postgresql_backup_cron)
-  * [postgresql_backup_enabled](#postgresql_backup_enabled)
-  * [postgresql_backup_formatting](#postgresql_backup_formatting)
-  * [postgresql_backup_ignore](#postgresql_backup_ignore)
-  * [postgresql_backup_path](#postgresql_backup_path)
-  * [postgresql_backup_retention](#postgresql_backup_retention)
-  * [postgresql_ctl_options](#postgresql_ctl_options)
-  * [postgresql_default_hba](#postgresql_default_hba)
-  * [postgresql_exporter_args](#postgresql_exporter_args)
-  * [postgresql_exporter_download](#postgresql_exporter_download)
-  * [postgresql_exporter_enabled](#postgresql_exporter_enabled)
-  * [postgresql_exporter_version](#postgresql_exporter_version)
-  * [postgresql_extra_databases](#postgresql_extra_databases)
-  * [postgresql_extra_environment](#postgresql_extra_environment)
-  * [postgresql_extra_hba](#postgresql_extra_hba)
-  * [postgresql_extra_ident](#postgresql_extra_ident)
-  * [postgresql_extra_users](#postgresql_extra_users)
-  * [postgresql_global_databases](#postgresql_global_databases)
-  * [postgresql_global_environment](#postgresql_global_environment)
-  * [postgresql_global_hba](#postgresql_global_hba)
-  * [postgresql_global_ident](#postgresql_global_ident)
-  * [postgresql_global_users](#postgresql_global_users)
-  * [postgresql_listen_address](#postgresql_listen_address)
-  * [postgresql_max_connections](#postgresql_max_connections)
-  * [postgresql_packages](#postgresql_packages)
-  * [postgresql_port](#postgresql_port)
-  * [postgresql_root_password](#postgresql_root_password)
-  * [postgresql_root_username](#postgresql_root_username)
-  * [postgresql_ssl_ca_file](#postgresql_ssl_ca_file)
-  * [postgresql_ssl_cert_file](#postgresql_ssl_cert_file)
-  * [postgresql_ssl_crl_file](#postgresql_ssl_crl_file)
-  * [postgresql_ssl_dh_params_file](#postgresql_ssl_dh_params_file)
-  * [postgresql_ssl_enabled](#postgresql_ssl_enabled)
-  * [postgresql_ssl_key_file](#postgresql_ssl_key_file)
-  * [postgresql_superuser_reserved_connections](#postgresql_superuser_reserved_connections)
-  * [postgresql_version](#postgresql_version)
-* [Dependencies](#dependencies)
-* [License](#license)
-* [Author](#author)
+- [Default Variables](#default-variables)
+  - [postgresql_backup_addition_script](#postgresql_backup_addition_script)
+  - [postgresql_backup_cron](#postgresql_backup_cron)
+  - [postgresql_backup_enabled](#postgresql_backup_enabled)
+  - [postgresql_backup_formatting](#postgresql_backup_formatting)
+  - [postgresql_backup_ignore](#postgresql_backup_ignore)
+  - [postgresql_backup_path](#postgresql_backup_path)
+  - [postgresql_backup_retention](#postgresql_backup_retention)
+  - [postgresql_ctl_options](#postgresql_ctl_options)
+  - [postgresql_default_hba](#postgresql_default_hba)
+  - [postgresql_exporter_args](#postgresql_exporter_args)
+  - [postgresql_exporter_download](#postgresql_exporter_download)
+  - [postgresql_exporter_enabled](#postgresql_exporter_enabled)
+  - [postgresql_exporter_version](#postgresql_exporter_version)
+  - [postgresql_extra_databases](#postgresql_extra_databases)
+  - [postgresql_extra_environment](#postgresql_extra_environment)
+  - [postgresql_extra_hba](#postgresql_extra_hba)
+  - [postgresql_extra_ident](#postgresql_extra_ident)
+  - [postgresql_extra_users](#postgresql_extra_users)
+  - [postgresql_global_databases](#postgresql_global_databases)
+  - [postgresql_global_environment](#postgresql_global_environment)
+  - [postgresql_global_hba](#postgresql_global_hba)
+  - [postgresql_global_ident](#postgresql_global_ident)
+  - [postgresql_global_users](#postgresql_global_users)
+  - [postgresql_listen_address](#postgresql_listen_address)
+  - [postgresql_max_connections](#postgresql_max_connections)
+  - [postgresql_packages](#postgresql_packages)
+  - [postgresql_port](#postgresql_port)
+  - [postgresql_root_password](#postgresql_root_password)
+  - [postgresql_root_username](#postgresql_root_username)
+  - [postgresql_ssl_ca_file](#postgresql_ssl_ca_file)
+  - [postgresql_ssl_cert_file](#postgresql_ssl_cert_file)
+  - [postgresql_ssl_crl_file](#postgresql_ssl_crl_file)
+  - [postgresql_ssl_dh_params_file](#postgresql_ssl_dh_params_file)
+  - [postgresql_ssl_enabled](#postgresql_ssl_enabled)
+  - [postgresql_ssl_key_file](#postgresql_ssl_key_file)
+  - [postgresql_superuser_reserved_connections](#postgresql_superuser_reserved_connections)
+  - [postgresql_version](#postgresql_version)
+- [Discovered Tags](#discovered-tags)
+- [Dependencies](#dependencies)
+- [License](#license)
+- [Author](#author)
 
 ---
 
@@ -588,9 +589,16 @@ postgresql_superuser_reserved_connections: 3
 postgresql_version: 12
 ```
 
+## Discovered Tags
+
+**_postgresql_**
+
+**_postgresql-exporter_**
+
+
 ## Dependencies
 
-* None
+- None
 
 ## License
 
