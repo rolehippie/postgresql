@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/rolehippie/postgresql/compare/v1.2.1...v1.2.2) (2023-07-31)
+
+
+### Bugfixes
+
+* **deps:** update dependency prometheus-community/postgres_exporter to v0.13.2 ([fbdd79d](https://github.com/rolehippie/postgresql/commit/fbdd79db603d16c08622ea97f92077d758475a26))
+
 ## [1.2.1](https://github.com/rolehippie/postgresql/compare/v1.2.0...v1.2.1) (2023-07-03)
 
 
