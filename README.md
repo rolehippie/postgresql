@@ -594,7 +594,8 @@ postgresql_superuser_reserved_connections: 3
 #### Default value
 
 ```YAML
-postgresql_version: 12
+postgresql_version: "{{ '14' if ansible_distribution_version is version('20.04', '>')
+  else ('12' if ansible_distribution_version is version('18.04', '>') else '10') }}"
 ```
 
 ## Discovered Tags
