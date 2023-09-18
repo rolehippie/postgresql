@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/rolehippie/postgresql/compare/v1.2.2...v1.2.3) (2023-09-18)
+
+
+### Bugfixes
+
+* use version 14 for newer versions than 20.04 ([5b70c1c](https://github.com/rolehippie/postgresql/commit/5b70c1cc962f151ebcddce6bfad9b473c682f81a))
+
 ## [1.2.2](https://github.com/rolehippie/postgresql/compare/v1.2.1...v1.2.2) (2023-07-31)
 
 
