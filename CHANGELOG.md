@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/rolehippie/postgresql/compare/v1.2.3...v1.3.0) (2023-10-02)
+
+
+### Features
+
+* **deps:** update dependency prometheus-community/postgres_exporter to v0.14.0 ([347762a](https://github.com/rolehippie/postgresql/commit/347762aa567115bb3185c2f9fe5cc823b8f37d18))
+
 ## [1.2.3](https://github.com/rolehippie/postgresql/compare/v1.2.2...v1.2.3) (2023-09-18)
 
 
