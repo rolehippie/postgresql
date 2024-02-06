@@ -7,6 +7,9 @@ postgresql_packages:
   - "postgresql-client-{{ postgresql_version }}"
   - python3-psycopg2
 
+# @var postgresql_recursive_perm_enforce:description: Enforce recursively permissions on data folder
+postgresql_recursive_perm_enforce: False
+
 # @var postgresql_listen_address:description: Address to listen to
 postgresql_listen_address: 0.0.0.0
 

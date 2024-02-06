@@ -12,7 +12,7 @@
     path: /var/lib/postgresql
     owner: postgres
     group: postgres
-    recurse: True
+    recurse: "{{ postgresql_recursive_perm_enforce }}"
     mode: u=rwx,g=,o=
   tags:
     - postgresql
