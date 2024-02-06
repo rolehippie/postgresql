@@ -260,7 +260,7 @@ postgresql_extra_databases:
     encoding: UTF-8
     lc_collate: de_DE.UTF-8
     lc_ctype: de_DE.UTF-8
-    template: template0
+    ansible.builtin.template: template0
     state: present
   - name: foobar
     state: absent
@@ -372,7 +372,7 @@ postgresql_global_databases:
     encoding: UTF-8
     lc_collate: de_DE.UTF-8
     lc_ctype: de_DE.UTF-8
-    template: template0
+    ansible.builtin.template: template0
     state: present
   - name: foobar
     state: absent

@@ -4,13 +4,13 @@
   failed_when: False
   changed_when: False
   check_mode: False
-  shell: /usr/bin/postgresql-exporter --version 2>&1
+  ansible.builtin.shell: /usr/bin/postgresql-exporter --version 2>&1
   tags:
     - postgresql
     - postgresql-exporter
 
 - name: Fact version change
-  set_fact:
+  ansible.builtin.set_fact:
     postgresql_exporter_version_changed: "{{ postgresql_exporter_version_check.rc != 0 or (postgresql_exporter_version_check.stdout_lines is defined and postgresql_exporter_version not in postgresql_exporter_version_check.stdout_lines[0]) | bool }}"
   tags:
     - postgresql
@@ -18,7 +18,7 @@
 
 - name: Download release tarball
   when: postgresql_exporter_version_changed
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ postgresql_exporter_download }}"
     dest: /usr/local/src
     remote_src: True
@@ -33,7 +33,7 @@
   when: postgresql_exporter_version_changed and not ansible_check_mode
   notify:
     - Restart postgresql-exporter
-  copy:
+  ansible.builtin.copy:
     src: "/usr/local/src/postgres_exporter-{{ postgresql_exporter_version }}.linux-amd64/postgres_exporter"
     dest: /usr/bin/postgresql-exporter
     remote_src: True
@@ -47,7 +47,7 @@
 - name: Write default config
   notify:
     - Restart postgresql-exporter
-  template:
+  ansible.builtin.template:
     src: exporter/default.j2
     dest: /etc/default/postgresql-exporter
     owner: root
@@ -60,7 +60,7 @@
 - name: Write service file
   notify:
     - Restart postgresql-exporter
-  template:
+  ansible.builtin.template:
     src: exporter/service.j2
     dest: /etc/systemd/system/postgresql-exporter.service
     owner: root
@@ -71,7 +71,7 @@
     - postgresql-exporter
 
 - name: Start postgresql-exporter service
-  systemd:
+  ansible.builtin.systemd:
     name: postgresql-exporter
     state: started
     daemon_reload: True
@@ -82,7 +82,7 @@
     - postgresql-exporter
 
 - name: Remove install directory
-  file:
+  ansible.builtin.file:
     path: "/usr/local/src/postgres_exporter-{{ postgresql_exporter_version }}.linux-amd64"
     state: absent
   tags:
