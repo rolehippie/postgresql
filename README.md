@@ -44,6 +44,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [postgresql_max_connections](#postgresql_max_connections)
   - [postgresql_packages](#postgresql_packages)
   - [postgresql_port](#postgresql_port)
+  - [postgresql_recursive_perm_enforce](#postgresql_recursive_perm_enforce)
   - [postgresql_root_password](#postgresql_root_password)
   - [postgresql_root_username](#postgresql_root_username)
   - [postgresql_ssl_ca_file](#postgresql_ssl_ca_file)
@@ -260,7 +261,7 @@ postgresql_extra_databases:
     encoding: UTF-8
     lc_collate: de_DE.UTF-8
     lc_ctype: de_DE.UTF-8
-    template: template0
+    ansible.builtin.template: template0
     state: present
   - name: foobar
     state: absent
@@ -372,7 +373,7 @@ postgresql_global_databases:
     encoding: UTF-8
     lc_collate: de_DE.UTF-8
     lc_ctype: de_DE.UTF-8
-    template: template0
+    ansible.builtin.template: template0
     state: present
   - name: foobar
     state: absent
@@ -507,6 +508,16 @@ Port to listen to
 
 ```YAML
 postgresql_port: 5432
+```
+
+### postgresql_recursive_perm_enforce
+
+Enforce recursively permissions on data folder
+
+#### Default value
+
+```YAML
+postgresql_recursive_perm_enforce: false
 ```
 
 ### postgresql_root_password
