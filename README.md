@@ -618,7 +618,7 @@ postgresql_version: "{{ '14' if ansible_distribution_version is version('20.04',
 
 ## Dependencies
 
-- None
+- [community.postgresql](https://github.com/ansible-collections/community.postgresql)
 
 ## License
 
