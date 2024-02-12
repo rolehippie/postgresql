@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.0](https://github.com/rolehippie/postgresql/compare/v1.4.0...v2.0.0) (2024-02-12)
+
+
+### Features
+
+* drop support for ubuntu 18.04 ([b280a09](https://github.com/rolehippie/postgresql/commit/b280a09308dd12b294da0350c768bdb7390c8464))
+* used full qualified collection names ([c68f143](https://github.com/rolehippie/postgresql/commit/c68f143c31c92050b7d5959f5e076d5c5c515e7f))
+
+
+### Bugfixes
+
+* add new attribute for optional ownership enforcement ([d52a58c](https://github.com/rolehippie/postgresql/commit/d52a58cb739f9eb9850dea944eb69ba75ba4cbc4))
+* remove meta requirements and document used collections ([830a8bf](https://github.com/rolehippie/postgresql/commit/830a8bf9067bed035275a1edc0758858e7667479))
+
 ## [1.4.0](https://github.com/rolehippie/postgresql/compare/v1.3.0...v1.4.0) (2023-11-13)
 
 
