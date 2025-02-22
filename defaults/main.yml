@@ -242,7 +242,7 @@ postgresql_exporter_enabled: True
 
 # @var postgresql_exporter_version:description: Version of the apache exporter to install
 # renovate: datasource=github-releases depName=prometheus-community/postgres_exporter
-postgresql_exporter_version: 0.16.0
+postgresql_exporter_version: 0.17.0
 
 # @var postgresql_exporter_download:description: URL to the apache exporter to install
 postgresql_exporter_download: "https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgresql_exporter_version }}/postgres_exporter-{{ postgresql_exporter_version }}.linux-amd64.tar.gz"
