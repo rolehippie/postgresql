@@ -1,4 +1,4 @@
-# postgresql
+# workspace
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/postgresql)
 [![General Workflow](https://github.com/rolehippie/postgresql/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/postgresql/actions/workflows/general.yml)
@@ -218,9 +218,10 @@ URL to the apache exporter to install
 #### Default value
 
 ```YAML
-postgresql_exporter_download: https://github.com/prometheus-community/postgres_exporter/releases/download/v{{
-  postgresql_exporter_version }}/postgres_exporter-{{ postgresql_exporter_version
-  }}.linux-amd64.tar.gz
+postgresql_exporter_download: 
+  https://github.com/prometheus-community/postgres_exporter/releases/download/v{{
+  postgresql_exporter_version }}/postgres_exporter-{{ 
+  postgresql_exporter_version }}.linux-amd64.tar.gz
 ```
 
 ### postgresql_exporter_enabled
@@ -614,7 +615,6 @@ postgresql_version: "{{ '14' if ansible_distribution_version is version('20.04',
 **_postgresql_**
 
 **_postgresql-exporter_**
-
 
 ## Dependencies
 
