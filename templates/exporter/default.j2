@@ -1,2 +1,2 @@
 DATA_SOURCE_NAME="postgresql://{{ postgresql_root_username }}:{{ postgresql_root_password }}@{{ postgresql_listen_address }}:{{ postgresql_port }}/postgres?sslmode=disable"
-ARGS="{{ ' ' + postgresql_exporter_args | join(' ') if postgresql_exporter_args | default(False) else '' }}"
+ARGS="{{ ' ' + postgresql_exporter_args | join(' ') if postgresql_exporter_args | default(false) else '' }}"

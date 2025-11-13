@@ -8,7 +8,7 @@ postgresql_packages:
   - python3-psycopg2
 
 # @var postgresql_recursive_perm_enforce:description: Enforce recursively permissions on data folder
-postgresql_recursive_perm_enforce: False
+postgresql_recursive_perm_enforce: false
 
 # @var postgresql_listen_address:description: Address to listen to
 postgresql_listen_address: 0.0.0.0
@@ -23,7 +23,7 @@ postgresql_max_connections: 1000
 postgresql_superuser_reserved_connections: 3
 
 # @var postgresql_ssl_enabled:description: Enable SSL encryption
-postgresql_ssl_enabled: True
+postgresql_ssl_enabled: true
 
 # @var postgresql_ctl_options:description: Path to CA file for SSL
 postgresql_ssl_ca_file:
@@ -217,7 +217,7 @@ postgresql_global_environment: {}
 postgresql_extra_environment: {}
 
 # @var postgresql_backup_enabled:description: Enable or disable the backup script
-postgresql_backup_enabled: False
+postgresql_backup_enabled: false
 
 # @var postgresql_backup_path:description: Path to store the backups
 postgresql_backup_path: /var/lib/postgresql/backup
@@ -238,7 +238,7 @@ postgresql_backup_ignore: (postgres|template0|template1)
 postgresql_backup_formatting: "%F"
 
 # @var postgresql_exporter_enabled:description: Enable the installation of the apache exporter
-postgresql_exporter_enabled: True
+postgresql_exporter_enabled: true
 
 # @var postgresql_exporter_version:description: Version of the apache exporter to install
 # renovate: datasource=github-releases depName=prometheus-community/postgres_exporter

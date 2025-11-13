@@ -13,19 +13,19 @@ superuser_reserved_connections = {{ postgresql_superuser_reserved_connections }}
 unix_socket_directories = '/var/run/postgresql'
 
 ssl = {{ 'on' if postgresql_ssl_enabled else 'off' }}
-{% if postgresql_ssl_ca_file | default(False) %}
+{% if postgresql_ssl_ca_file | default(false) %}
 ssl_ca_file = '{{ postgresql_ssl_ca_file }}'
 {% endif %}
-{% if postgresql_ssl_crl_file | default(False) %}
+{% if postgresql_ssl_crl_file | default(false) %}
 ssl_crl_file = '{{ postgresql_ssl_crl_file }}'
 {% endif %}
-{% if postgresql_ssl_cert_file | default(False) %}
+{% if postgresql_ssl_cert_file | default(false) %}
 ssl_cert_file = '{{ postgresql_ssl_cert_file }}'
 {% endif %}
-{% if postgresql_ssl_key_file | default(False) %}
+{% if postgresql_ssl_key_file | default(false) %}
 ssl_key_file = '{{ postgresql_ssl_key_file }}'
 {% endif %}
-{% if postgresql_ssl_dh_params_file | default(False) %}
+{% if postgresql_ssl_dh_params_file | default(false) %}
 ssl_dh_params_file = '{{ postgresql_ssl_dh_params_file }}'
 {% endif %}
 

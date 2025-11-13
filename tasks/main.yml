@@ -93,14 +93,14 @@
   ansible.builtin.systemd:
     name: postgresql
     state: started
-    daemon_reload: True
-    masked: False
-    enabled: True
+    daemon_reload: true
+    masked: false
+    enabled: true
   tags:
     - postgresql
 
 - name: Update root account
-  become: True
+  become: true
   become_user: postgres
   community.postgresql.postgresql_user:
     name: "{{ postgresql_root_username }}"
@@ -111,7 +111,7 @@
     - postgresql
 
 - name: Create defined databases
-  become: True
+  become: true
   become_user: postgres
   loop: "{{ postgresql_global_databases + postgresql_extra_databases }}"
   loop_control:
@@ -127,7 +127,7 @@
     - postgresql
 
 - name: Create defined users
-  become: True
+  become: true
   become_user: postgres
   loop: "{{ postgresql_global_users + postgresql_extra_users }}"
   loop_control:
@@ -139,7 +139,7 @@
     groups: "{{ item.groups | default(omit) }}"
     priv: "{{ item.priv | default(omit) }}"
     role_attr_flags: "{{ item.role_attr_flags | default(omit) }}"
-    encrypted: "{{ item.encrypted | default(True) }}"
+    encrypted: "{{ item.encrypted | default(true) }}"
     state: "{{ item.state | default('present') }}"
   tags:
     - postgresql
@@ -173,7 +173,7 @@
     - postgresql
 
 - name: Include exporter tasks
-  when: postgresql_exporter_enabled | default(False)
+  when: postgresql_exporter_enabled | default(false)
   ansible.builtin.include_tasks: exporter.yml
   tags:
     - postgresql
