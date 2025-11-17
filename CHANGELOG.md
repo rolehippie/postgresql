@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/rolehippie/postgresql/compare/v2.3.1...v2.4.0) (2025-11-17)
+
+
+### Features
+
+* apply new repo structure and update linting ([0be9270](https://github.com/rolehippie/postgresql/commit/0be92703bb315a94ef3068d6557d4fb52a904004))
+
 ## [2.3.1](https://github.com/rolehippie/postgresql/compare/v2.3.0...v2.3.1) (2025-10-06)
 
 
