@@ -241,7 +241,7 @@ Version of the apache exporter to install
 #### Default value
 
 ```YAML
-postgresql_exporter_version: 0.18.1
+postgresql_exporter_version: 0.19.0
 ```
 
 ### postgresql_extra_databases
