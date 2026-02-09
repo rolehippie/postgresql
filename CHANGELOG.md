@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.5.0](https://github.com/rolehippie/postgresql/compare/v2.4.0...v2.5.0) (2026-02-09)
+
+### Dependencies
+
+* **minor:** update dependency prometheus-community/postgres_exporter to v0.19.0 ([72a7e6f](https://github.com/rolehippie/postgresql/commit/72a7e6f9915d658bcb1e49ab695e852811e7b200))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([fede6d6](https://github.com/rolehippie/postgresql/commit/fede6d68da484991e91168e503aacf14c1cbaeb0))
+* **flake:** updated lockfile [skip ci] ([40fa8c0](https://github.com/rolehippie/postgresql/commit/40fa8c067382751634d9cc98d14b7c543f399ab8))
+* **flake:** updated lockfile [skip ci] ([10dc134](https://github.com/rolehippie/postgresql/commit/10dc13455761b3c524f08bd5e327bcdb4443e745))
+* **flake:** updated lockfile [skip ci] ([55ad645](https://github.com/rolehippie/postgresql/commit/55ad645dec76effd8f15bc219e649e16ee165318))
+* **flake:** updated lockfile [skip ci] ([d3c42ab](https://github.com/rolehippie/postgresql/commit/d3c42ab13fbc9e36c4de7e628a282f87adf3d1e3))
+* **flake:** updated lockfile [skip ci] ([f523017](https://github.com/rolehippie/postgresql/commit/f523017084ad6fb1ba95da9b5b8a71188e1a4af2))
+* **flake:** updated lockfile [skip ci] ([b8a9951](https://github.com/rolehippie/postgresql/commit/b8a9951ccc1e789a5068a661e8a47bc2d0f3ccb5))
+* **flake:** updated lockfile [skip ci] ([64c73d9](https://github.com/rolehippie/postgresql/commit/64c73d984768c896a9059e2bbf7d62c338bcbc75))
+* **flake:** updated lockfile [skip ci] ([487e93c](https://github.com/rolehippie/postgresql/commit/487e93cde02b15a11ced1e7a96b052e0cbadbaca))
+* **flake:** updated lockfile [skip ci] ([b470f02](https://github.com/rolehippie/postgresql/commit/b470f023ccc257a941ffbdd51381536357ae1669))
+* **flake:** updated lockfile [skip ci] ([db97bdd](https://github.com/rolehippie/postgresql/commit/db97bdd623daddc7393a8e9d7cba11a871c2f0dc))
+* **flake:** updated lockfile [skip ci] ([f2cc51b](https://github.com/rolehippie/postgresql/commit/f2cc51ba14048cc318ae2ade04427143075aa536))
+
 ## [2.4.0](https://github.com/rolehippie/postgresql/compare/v2.3.1...v2.4.0) (2025-11-17)
 
 
