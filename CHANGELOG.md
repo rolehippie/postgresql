@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.5.1](https://github.com/rolehippie/postgresql/compare/v2.5.0...v2.5.1) (2026-03-02)
+
+### Dependencies
+
+* **patch:** update dependency prometheus-community/postgres_exporter to v0.19.1 ([e674704](https://github.com/rolehippie/postgresql/commit/e67470408f821492d0cb341db9d9d33b771a364a))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([d09773b](https://github.com/rolehippie/postgresql/commit/d09773ba007d6b7e460a272e2b3b43b24606a15f))
+* **flake:** updated lockfile [skip ci] ([ead5fc0](https://github.com/rolehippie/postgresql/commit/ead5fc0698b7e0a767bd9814f88c17c46aaea806))
+* **flake:** updated lockfile [skip ci] ([f6322a1](https://github.com/rolehippie/postgresql/commit/f6322a12ffe4a1c5db1960d6ca0c0de5aef053ac))
+
 ## [2.5.0](https://github.com/rolehippie/postgresql/compare/v2.4.0...v2.5.0) (2026-02-09)
 
 ### Dependencies
