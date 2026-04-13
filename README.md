@@ -218,10 +218,7 @@ URL to the apache exporter to install
 #### Default value
 
 ```YAML
-postgresql_exporter_download: 
-  https://github.com/prometheus-community/postgres_exporter/releases/download/v{{
-  postgresql_exporter_version }}/postgres_exporter-{{ 
-  postgresql_exporter_version }}.linux-amd64.tar.gz
+postgresql_exporter_download: https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgresql_exporter_version }}/postgres_exporter-{{ postgresql_exporter_version }}.linux-amd64.tar.gz
 ```
 
 ### postgresql_exporter_enabled
@@ -606,8 +603,7 @@ postgresql_superuser_reserved_connections: 3
 #### Default value
 
 ```YAML
-postgresql_version: "{{ '14' if ansible_distribution_version is version('20.04', '>')
-  else ('12' if ansible_distribution_version is version('18.04', '>') else '10') }}"
+postgresql_version: "{{ '14' if ansible_distribution_version is version('20.04', '>') else ('12' if ansible_distribution_version is version('18.04', '>') else '10') }}"
 ```
 
 ## Discovered Tags
