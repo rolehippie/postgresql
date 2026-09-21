@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.0.0](https://github.com/rolehippie/postgresql/compare/v2.8.0...v3.0.0) (2026-09-21)
+
+### Dependencies
+
+* **major:** update dependency community.postgresql to v5 ([9e7acb2](https://github.com/rolehippie/postgresql/commit/9e7acb2b9072fc3b5edd5cd75f49da4f36298d37))
+* **mise:** update dependency pipx:ansible-core to v2.21.4 ([5f09532](https://github.com/rolehippie/postgresql/commit/5f095325260922bdc7ff601055208a89b46c86a7))
+* **mise:** update dependency pipx:ansible-doctor to v8.4.2 ([e4fc893](https://github.com/rolehippie/postgresql/commit/e4fc8936ba7f899b1878dd44968443648bcb6693))
+* **mise:** update dependency prek to v0.5.3 ([df0c648](https://github.com/rolehippie/postgresql/commit/df0c648d4796ab63faf023e53e5bc5c63b2b58b1))
+
 ## [2.8.0](https://github.com/rolehippie/postgresql/compare/v2.7.0...v2.8.0) (2026-09-07)
 
 ### Features
